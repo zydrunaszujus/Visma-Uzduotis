@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "GkDKa1QN2F8rnVCeojriB3FZbXdMO1hqf+sT52dCnLCR9Xyn39SdBEluZPZnkvGRmlQGTh8dvMK8H8RtRBTuvA==",
+  "dgSpecHash": "7MIjdZuTRYFMIVuddQdw5dtALSnv+ccM/dNKChxji1aVLQgTM8AI0W6hdvUmA+etCLllIV3ZD5+aSzG4BxplEA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Jonas\\Documents\\GitHub\\Visma-Uzduotis\\VismaTask\\VismaTask\\VismaTask.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Jonas\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
   "logs": []
 }
