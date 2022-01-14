@@ -1,43 +1,111 @@
 ﻿using VismaTask;
+DB.Load();
+DB.LoadUsers();
 
 
 bool exit = false;
-int selection = 0;
+int selection;
 
-DB.Load();
+var loginVariants = new string[]
+{
+    "Prisijungti",
+    "Registruotis"
+};
+
+var variants = new string[]
+{
+    "Prideti nauja susitikima",
+    "Istrinti susitikima",
+    "Prideti zmogu prie susitikimo",
+    "Isimti zmogu is susitikimo",
+    "Perziureti visus susitikimus",
+    "Baigti programa"
+};
+
+
+selection = UI_Helper.AskForSelection(loginVariants);
+
+switch (selection)
+{
+    case 0:
+        MeetingController.Login();
+        break;
+    default:
+        MeetingController.Register();
+        break;
+}
+
 
 while (!exit)
 {
-    Console.WriteLine("Pasirinkimai :");
-    Console.WriteLine("1 - Prideti nauja susitikima");
-    Console.WriteLine("2 - Istrinti susitikima");
-    Console.WriteLine("3 - Prideti zmogu prie susitikimo");
-    Console.WriteLine("4 - Isimti zmogu is susitikimo");
-    Console.WriteLine("5 - Perziureti visus susitikimus");
-    Console.WriteLine("6 - Baigti programa");
-
-    if(!int.TryParse(Console.ReadLine(), out selection) || selection > 6 || selection < 1)
-    {
-        Console.Clear();
-        Console.WriteLine("Netinkamai ivestas pasirinkimimas.");
-        continue;
-    }
+    selection = UI_Helper.AskForSelection(variants);
 
     switch (selection)
     {
-        case 1: MeetingController.Create();
+        case 0: MeetingController.Create();
             break;
-        case 2: MeetingController.Delete();
+        case 1: MeetingController.Delete();
             break;
-        case 3: MeetingController.AddPerson();
+        case 2: MeetingController.AddPerson();
             break;
-        case 4: MeetingController.RemovePerson();
+        case 3: MeetingController.RemovePerson();
             break;
-        case 5: MeetingController.GetAll();
+        case 4: MeetingController.GetAll();
             break;
         default: Console.Clear();
             exit = true;
             break;
     }
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+var selections = new string[]
+{
+    "Prideti nauja susitikima",
+    "Istrinti susitikima",
+    "Prideti zmogu prie susitikimo",
+    "Isimti zmogu is susitikimo",
+    "Perziureti visus susitikimus",
+    "Baigti programa"
+};
+
+var actions = new Action[]
+{
+    MeetingController.Create,
+    MeetingController.Delete,
+    MeetingController.AddPerson,
+    MeetingController.RemovePerson,
+    MeetingController.GetAll,
+    () => { Console.Clear(); exit = true; }
+};
+
+
+while (!exit)
+{
+    UI_Helper.UniversalSelectPrompt(selections, actions);
+}
+*/
