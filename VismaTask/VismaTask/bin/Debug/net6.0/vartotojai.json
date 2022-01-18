@@ -1,10 +1,1 @@
-[
-    {
-        "Name": "ponas",
-        "Password": "$2a$11$awR6UabjF/HQPgJgVWqULeFmVlPgSO6JYD8cp4jKVsXueGFe0Jsza"
-    },
-    {
-        "Name": "kapitonas",
-        "Password": "$2a$11$WCQFLK7to8ILBZ0tcEu1Xu55JHmIw8iCxcuYxUaui6s73g9NfEQta"
-    }
-]
+[{"Id":0,"Name":"jonas","Password":"$2a$11$Dl7qxo3Uab2b6I3jXdYNKOf4RnSGBi5GtwlDGcRQu9Zk0kKerMoJW"}]

@@ -1,6 +1,7 @@
 ﻿using VismaTask;
 DB.Load();
 DB.LoadUsers();
+DB.LoadIndex();
 
 
 bool exit = false;
@@ -23,7 +24,7 @@ var variants = new string[]
 };
 
 
-selection = UI_Helper.AskForSelection(loginVariants);
+selection = UI_Helper.AskForSelection(loginVariants, "Pasirinkimai : ");
 
 switch (selection)
 {
@@ -38,7 +39,7 @@ switch (selection)
 
 while (!exit)
 {
-    selection = UI_Helper.AskForSelection(variants);
+    selection = UI_Helper.AskForSelection(variants, "Veiksmai : ");
 
     switch (selection)
     {

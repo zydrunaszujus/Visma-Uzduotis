@@ -8,6 +8,16 @@ namespace VismaTask
 {
     public static class MeetingController
     {
+        public static string[] FILTER_VARIANTS =
+        {
+            "Filtras pagal aprasyma",
+            "Filtras pagal atsakinga asmeni",
+            "Filtras pagal kategorija",
+            "Filtras pagal tipa",
+            "Filtras pagal data",
+            "Filtras pagal dalyviu skaiciu"
+        };
+
         public static void Login()
         {
             Console.Clear();
@@ -61,7 +71,7 @@ namespace VismaTask
 
                 string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
 
-                var newUser = new User() { Name = username, Password = hashedPassword };
+                var newUser = new User() { Id = DB.Index.NextUserId++, Name = username, Password = hashedPassword };
 
                 DB.Users.Add(newUser);
                 DB.SaveUsers();
@@ -75,18 +85,21 @@ namespace VismaTask
         {
             Console.Clear();
             Console.WriteLine("Kuriamas susitikimas ...");
-            var testas = new Meeting()
+            var meeting = new Meeting()
             {
-                Name = "TestName",
-                ResponsiblePerson = "TestPerson",
-                Description = "TestDescription",
-                Category = Category.Short,
-                Type = Type.InPerson,
-                StartDate = DateTime.Now,
-                EndDate = DateTime.Now
+                Name = UI_Helper.AskForString("Iveskite susitikimo pavadinima : "),
+                ResponsiblePersonId = DB.CurrentUser.Id,
+                Description = UI_Helper.AskForString("Iveskite susitikimo aprasyma : "),
+                Category = (Category)UI_Helper.AskForSelection(Enum.GetNames(typeof(Category)),"Pasirinkite susitikimo kategorija : "),
+                Type = (Type)UI_Helper.AskForSelection(Enum.GetNames(typeof(Type)), "Pasirinkite susitikimo tipa : "),
+                StartDate = UI_Helper.AskForDate("Iveskite susitikimo pradzios data : "),
+                EndDate = UI_Helper.AskForDate("Iveskite susitikimo pabaigos data : ")
             };
-            DB.Meetings.Add(testas);
+            meeting.People.Add(DB.CurrentUser);
+            DB.Meetings.Add(meeting);
             DB.SaveChanges();
+            Console.Clear();
+            Console.WriteLine("Susitikimas sukurtas !");
         }
 
         public static void Delete()
@@ -110,8 +123,50 @@ namespace VismaTask
 
         public static void GetAll()
         {
-            Console.Clear();
-            Console.WriteLine("Rodomi visi susitikimai ...");
+            var screen = DB.Meetings;
+            bool exit = false;
+            while (!exit)
+            {
+                Console.Clear();
+                Console.WriteLine("Rodomi susitikimai ...");
+                Console.WriteLine("Esc - baigti");
+                Console.WriteLine("f - filtruoti");
+                screen.ForEach(x => Console.WriteLine(x));
+                var key = Console.ReadKey();
+                if (key.Key == ConsoleKey.Escape) exit = true;
+                if (key.Key == ConsoleKey.F)
+                {
+                    var selection = UI_Helper.AskForSelection(FILTER_VARIANTS, "Pasirinkite filtra : ");
+                    var text = UI_Helper.AskForString("Iveskite filtro teksta : ");
+
+                    switch (selection)
+                    {
+                        case 0:
+                            screen = screen.Where(x => x.Description.Contains(text)).ToList();
+                            break;
+                        case 1:
+                            screen = screen.Where(x => x.People.Select(x => x.Name).Contains(text)).ToList();
+                            break;
+                        case 2:
+                            screen = screen.Where(x => x.Category.ToString().Contains(text)).ToList();
+                            break;
+                        case 3:
+                            screen = screen.Where(x => x.Type.ToString().Contains(text)).ToList();
+                            break;
+                        case 4:
+                            screen = screen.Where(x => x.StartDate.ToShortDateString().Contains(text) || x.EndDate.ToShortDateString().Contains(text)).ToList();
+                            break;
+                        default:
+                            var count = 0;
+                            if(int.TryParse(text, out count))
+                            {
+                                screen = screen.Where(x => x.People.Count >= count).ToList();
+                            }
+                            break;
+                    }
+                }
+            }
+            
         }
 
     }
