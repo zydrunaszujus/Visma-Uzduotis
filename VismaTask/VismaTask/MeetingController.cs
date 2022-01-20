@@ -105,19 +105,98 @@ namespace VismaTask
         public static void Delete()
         {
             Console.Clear();
-            Console.WriteLine("Trinamas susitikimas ...");
+            var variants=DB.Meetings.Select(x=>x.Name).ToArray();
+            var selection=UI_Helper.AskForSelection(variants,"Pasirinkite, kuri susirinkima norite istrinti")
+           var meeting=DB.Meetings[selection];//parinks meetingaa,kuri mes apsirinkom
+            if (meeting.ResponsiblePersonId == DB.CurrentUser.Id)
+            {
+                DB.Meetings.Remove(meeting);
+                DB.SaveChanges();
+                Console.Clear();
+                Console.WriteLine("Susitikimas {0} istrintas ! ",meeting.Name);
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Susitikimo {0} istrinti negalima. Nes nesate jo savininkas ! ",meeting.Name);
+                Console.ReadKey();
+            }
+
         }
 
         public static void AddPerson()
         {
             Console.Clear();
-            Console.WriteLine("Pridedamas zmogus i susitikima ...");
+            var variantsMeeting=DB.Meetings.Select(x=>x.Name).ToArray();
+            var selectionMeeting=UI_Helper.AskForSelection(variantsMeeting,"Pasirinkite susitikima : ");//pasirenkkam meetinga
+            var meeting=DB.Meetings[selectionMeeting];
+            var variantsUser=DB.Users.Select(x=>x.Name).ToArray();
+            var selectionUser=UI_Helper.AskForSelection(variantsUser,"Pasirinkite prededama zmogu : ");//pasirenkam zmogu
+            var user=DB.Users[selectionUser];
+
+            var intersects=DB.Meetings.Where(x=>x.People.Contains(user)&&meeting.Between(x.SartDate,x.EndDate)); //tikrinama ar meetingas nera tarp kitu meetingu
+            var intersects=DB.Meetings.
+
+            if (!meeting.People.Contains(user))//rodo kokie susitikime yra zmones
+	        {//jei persikirs mes warning
+                Console.Clear();
+                var key =ConsoleKey.Y;
+                if (intersects.Count>0)
+	            {
+                    foreach (var item in intersects)
+                    {
+                        Console.WriteLine("Pilietis jau turi {0}tuo metu, bandykite kitu metu.",item.Name);
+                    }
+                    Console.WriteLine("Ar norite testi? Y?N");
+                    key=Console.ReadKey().Key;//kad isgaut key
+
+	            }
+                if (key==ConsoleKey.Y)//noresim prideti zmaogu
+	            {
+                    meeting.People.Add(user);//pridedam zmogu
+                    Console.Clear();
+                    Console.WriteLine("Pridedamas vartotojas {0} prie susitikimo {1} laiku {2} .",user.Name,meeting.Name,meeting.StartDate);
+	                Console.ReadKey();//kad palauktu,ne iskarto verstu.
+
+                }
+
+	        }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Zmogus {0} pridetas i susirinkima {1}",user.Name,meeting.Name);
+                Console.ReadKey();
+            }
+            
         }
 
         public static void RemovePerson()
         {
             Console.Clear();
-            Console.WriteLine("Pasalinamas zmogus is susitikimo ...");
+            var variantsMeeting=DB.Meetings.Select(x=>x.Name).ToArray();
+            var selectionMeeting=UI_Helper.AskForSelection(variantsMeeting,"Pasirinkite susitikima : ");//pasirenkkam meetinga
+            var meeting=DB.Meetings[selectionMeeting];
+            //               zmones is meeting saraso
+            var variantsUser=meeting.People.Select(x=>x.Name).ToArray();
+            var selectionUser=UI_Helper.AskForSelection(variantsUser,"Pasirinkite pasalinama zmogu : ");//pasirenkam zmogu
+            var user=meeting.People[selectionUser];
+
+            
+            if (meeting.ResponsiblePersonId != user.Id)//lyginam ar norimas istrinti asmuo nera susitikima sukures zmogelis.Ar nelygu
+            {
+                meeting.People.Remove(user);//tuomet istrinam useri
+                DB.SaveChanges();
+                Console.WriteLine("Zmogus {0} pasalintas is susitikimo {1}",user.Nmae,meeting.Name);
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Negalima pasalinti susitikimo kurejo");
+                Console.ReadKey();
+
+            }
 
         }
 
@@ -168,6 +247,15 @@ namespace VismaTask
             }
             
         }
+        //                                       kitu susitikimu pradzia ir pabaiga
+        public  static bool Between(this Meeting current,DateTime start,DateTime end)//current(dabartinnis)-data kuria tikrinsim
+        {
+            bool startCheck=start<=current.StartDate && current.StartDate<=end;//tikrinam kvieciamo curent pradzia ar nera kito susitikimo tarpe
+            bool endCheck=start<=current.EndDate&&current.EndDate<=end;//tikrinam kvieciamo curent galas ar nera kito susitikimo tarpe
+            return startCheck||endCheck;
+            //curent dabartinis meetingas, i kuri norima pakviesti
+        }
+
 
     }
 }
