@@ -15,7 +15,7 @@ namespace VismaTask
             "Filtras pagal kategorija",
             "Filtras pagal tipa",
             "Filtras pagal data",
-            "Filtras pagal dalyviu skaiciu"
+            "Filtras pagal dalyviu skaicius"
         };
 
         public static void Login()
