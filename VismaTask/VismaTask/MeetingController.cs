@@ -87,6 +87,7 @@ namespace VismaTask
             Console.WriteLine("Kuriamas susitikimas ...");
             var meeting = new Meeting()
             {
+                Id=DB.Index.NextMeetingId++,//skaiciuos susitikimu skaiciu
                 Name = UI_Helper.AskForString("Iveskite susitikimo pavadinima : "),
                 ResponsiblePersonId = DB.CurrentUser.Id,
                 Description = UI_Helper.AskForString("Iveskite susitikimo aprasyma : "),
@@ -95,6 +96,7 @@ namespace VismaTask
                 StartDate = UI_Helper.AskForDate("Iveskite susitikimo pradzios data : "),
                 EndDate = UI_Helper.AskForDate("Iveskite susitikimo pabaigos data : ")
             };
+           
             meeting.People.Add(DB.CurrentUser);
             DB.Meetings.Add(meeting);
             DB.SaveChanges();
@@ -208,11 +210,11 @@ namespace VismaTask
             {
                 Console.Clear();
                 Console.WriteLine("Rodomi susitikimai ...");
-                Console.WriteLine("Esc - baigti");
-                Console.WriteLine("f - filtruoti");
+                Console.WriteLine("X - baigti");
+                Console.WriteLine("F - filtruoti");
                 screen.ForEach(x => Console.WriteLine(x));
                 var key = Console.ReadKey();
-                if (key.Key == ConsoleKey.Escape) exit = true;
+                if (key.Key == ConsoleKey.X) exit = true;
                 if (key.Key == ConsoleKey.F)
                 {
                     var selection = UI_Helper.AskForSelection(FILTER_VARIANTS, "Pasirinkite filtra : ");

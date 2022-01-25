@@ -91,23 +91,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Jonas\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\zydru\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jonas\\Documents\\GitHub\\Visma-Uzduotis\\VismaTask\\VismaTask\\VismaTask.csproj",
+      "projectUniqueName": "C:\\Users\\zydru\\Documents\\GitHub\\Visma-UzduotisJono\\VismaTask\\VismaTask\\VismaTask.csproj",
       "projectName": "VismaTask",
-      "projectPath": "C:\\Users\\Jonas\\Documents\\GitHub\\Visma-Uzduotis\\VismaTask\\VismaTask\\VismaTask.csproj",
-      "packagesPath": "C:\\Users\\Jonas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jonas\\Documents\\GitHub\\Visma-Uzduotis\\VismaTask\\VismaTask\\obj\\",
+      "projectPath": "C:\\Users\\zydru\\Documents\\GitHub\\Visma-UzduotisJono\\VismaTask\\VismaTask\\VismaTask.csproj",
+      "packagesPath": "C:\\Users\\zydru\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\zydru\\Documents\\GitHub\\Visma-UzduotisJono\\VismaTask\\VismaTask\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Jonas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\zydru\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -157,7 +158,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

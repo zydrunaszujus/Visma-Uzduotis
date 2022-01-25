@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "qz+LMuIOJx7dSQ2wCyz0dmPCwPireFZIzCIU0AMomaLYQTsBVRD4kPhMKKNS+5cOp/F3C0qA8XaAbNash4+apQ==",
+  "dgSpecHash": "9hHpN8R67IUlR1L0bGZKq90pk/FQ3+DxSUKKPlxq9F7++0sw1T5m+YSUfz8IfImPYvzU4Udv0PWcAyTDP81x4Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Jonas\\Documents\\GitHub\\Visma-Uzduotis\\VismaTask\\VismaTask\\VismaTask.csproj",
+  "projectFilePath": "C:\\Users\\zydru\\Documents\\GitHub\\Visma-UzduotisJono\\VismaTask\\VismaTask\\VismaTask.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Jonas\\.nuget\\packages\\bcrypt.net-next\\4.0.2\\bcrypt.net-next.4.0.2.nupkg.sha512",
-    "C:\\Users\\Jonas\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+    "C:\\Users\\zydru\\.nuget\\packages\\bcrypt.net-next\\4.0.2\\bcrypt.net-next.4.0.2.nupkg.sha512",
+    "C:\\Users\\zydru\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],
   "logs": []
 }

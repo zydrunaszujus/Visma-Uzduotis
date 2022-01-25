@@ -19,3 +19,8 @@ C:\Users\Jonas\Documents\GitHub\Visma-Uzduotis\VismaTask\VismaTask\bin\Debug\net
 C:\Users\zydru\Documents\GitHub\Visma-UzduotisJono\VismaTask\VismaTask\obj\Debug\net6.0\VismaTask.dll
 C:\Users\zydru\Documents\GitHub\Visma-UzduotisJono\VismaTask\VismaTask\obj\Debug\net6.0\ref\VismaTask.dll
 C:\Users\zydru\Documents\GitHub\Visma-UzduotisJono\VismaTask\VismaTask\obj\Debug\net6.0\VismaTask.pdb
+C:\Users\zydru\Documents\GitHub\Visma-UzduotisJono\VismaTask\VismaTask\obj\Debug\net6.0\VismaTask.csproj.AssemblyReference.cache
+C:\Users\zydru\Documents\GitHub\Visma-UzduotisJono\VismaTask\VismaTask\obj\Debug\net6.0\VismaTask.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\zydru\Documents\GitHub\Visma-UzduotisJono\VismaTask\VismaTask\obj\Debug\net6.0\VismaTask.AssemblyInfoInputs.cache
+C:\Users\zydru\Documents\GitHub\Visma-UzduotisJono\VismaTask\VismaTask\obj\Debug\net6.0\VismaTask.AssemblyInfo.cs
+C:\Users\zydru\Documents\GitHub\Visma-UzduotisJono\VismaTask\VismaTask\obj\Debug\net6.0\VismaTask.csproj.CoreCompileInputs.cache
